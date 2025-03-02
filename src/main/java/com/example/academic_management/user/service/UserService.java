@@ -20,7 +20,7 @@ public class UserService {
     }
 
     public UserResponse signInUser(UserRequest request) {
-        User user = new User(null, request.getStudentId(), request.getName(), request.getGrade(), request.getGradeScore(), request.getDepartmentScore());
+        User user = new User(null, request.studentId(), request.name(), request.grade(), request.gradeScore(), request.departmentScore());
         Long id = userRepository.save(user);
         return new UserResponse(new User(id, user.getStudentId(), user.getName(), user.getGrade(), user.getGradeScore(), user.getDepartmentScore()));
     }

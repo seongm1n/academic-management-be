@@ -21,7 +21,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest request) {
         UserResponse response = userService.signInUser(request);
-        return ResponseEntity.created(URI.create("/users/" + response.getId()))
+        return ResponseEntity.created(URI.create("/users/" + response.id()))
                 .body(response);
     }
 
