@@ -4,14 +4,16 @@ public class User {
     private final Long id;
     private final String StudentId;
     private final String name;
+    private final String password;
     private final int grade;
     private final int gradeScore;
     private final int departmentScore;
 
-    public User(Long id, String StudentId, String name, int grade, int gradeScore, int departmentScore) {
+    public User(Long id, String StudentId, String name, String password, int grade, int gradeScore, int departmentScore) {
         this.id = id;
         this.StudentId = StudentId;
         this.name = name;
+        this.password = password;
         this.grade = grade;
         this.gradeScore = gradeScore;
         this.departmentScore = departmentScore;
@@ -27,6 +29,10 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public int getGrade() {

@@ -36,24 +36,24 @@ public class UserControllerTest {
 
     @Test
     public void testCreateUser() throws Exception {
-        UserResponse userResponse = new UserResponse(new User(1L, "20180595", "김성민", 4, 1000, 200));
+        UserResponse userResponse = new UserResponse(new User(1L, "20180595", "김성민", "1234", 4, 1000, 200));
 
         doReturn(userResponse).when(userService).signInUser(any(UserRequest.class));
 
         mockMvc.perform(post("/users")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"studentId\":\"20180595\",\"name\":\"김성민\",\"grade\":4,\"gradeScore\":1000,\"departmentScore\":200}"))
+                .content("{\"studentId\":\"20180595\",\"name\":\"김성민\",\"password\":\"1234\",\"grade\":4,\"gradeScore\":1000,\"departmentScore\":200}"))
                 .andExpect(status().isCreated())
-                .andExpect(content().json("{\"id\":1,\"studentId\":\"20180595\",\"name\":\"김성민\",\"grade\":4,\"gradeScore\":1000,\"departmentScore\":200}"));
+                .andExpect(content().json("{\"id\":1,\"studentId\":\"20180595\",\"name\":\"김성민\",\"password\":\"1234\",\"grade\":4,\"gradeScore\":1000,\"departmentScore\":200}"));
     }
 
     @Test
     public void testGetUser() throws Exception {
-        UserResponse userResponse = new UserResponse(new User(1L, "20180595", "김성민", 4, 1000, 200));
+        UserResponse userResponse = new UserResponse(new User(1L, "20180595", "김성민", "1234", 4, 1000, 200));
         when(userService.findById(1L)).thenReturn(userResponse);
 
         mockMvc.perform(get("/users/1"))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{\"id\":1,\"studentId\":\"20180595\",\"name\":\"김성민\",\"grade\":4,\"gradeScore\":1000,\"departmentScore\":200}"));
+                .andExpect(content().json("{\"id\":1,\"studentId\":\"20180595\",\"name\":\"김성민\",\"password\":\"1234\",\"grade\":4,\"gradeScore\":1000,\"departmentScore\":200}"));
     }
 }
